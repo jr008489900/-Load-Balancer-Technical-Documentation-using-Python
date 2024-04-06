@@ -49,50 +49,12 @@ FASTAPI Server1, Server2, Server3：後端伺服器，運行FASTAPI應用程式�
 負載均衡器與FASTAPI應用程式實作
 本項目包含三個實作練習，展示了如何使用Python實現不同類型的負載均衡器，並將其與FASTAPI應用程式結合。
 
-練習概述
-practice1：最簡單的負載均衡器，可以回傳使用哪一台後端伺服器的資訊。
-practice2：Round-robin負載均衡器，會輪流調用不同的後端伺服器。
-practice3：根據後端伺服器的URL資訊，調用web server的資料並回傳給前端。
+## 練習概述
++ practice1：最簡單的負載均衡器，可以回傳使用哪一台後端伺服器的資訊。
++ practice2：Round-robin負載均衡器，會輪流調用不同的後端伺服器。
++ practice3：根據後端伺服器的URL資訊，調用web server的資料並回傳給前端。
++ practice4: 最少連接（Least Connections）負載均衡器會選擇當前連接數最低的後端伺服器來處理新的請求。這種策略可以確保資源被均衡地分配，並且能夠有效地避免因某些伺服器連接數過高而導致的性能下降。
 
-## practice1
-啟動FASTAPI伺服器（假設在8000和8001端口）：
-
-```
-uvicorn webserver:app --port 8000
-uvicorn webserver:app --port 8001
-```
-啟動Python負載均衡器：
-```
-python load_balancer.py
-```
-當你訪問http://localhost:9000時，負載均衡器會將請求轉發到其中一個FASTAPI伺服器，並返回使用的後端伺服器資訊。
-
-## practice2
-啟動FASTAPI伺服器（假設在8000和8001端口）：
-
-```
-uvicorn webserver:app --port 8000
-uvicorn webserver:app --port 8001
-```
-啟動Python負載均衡器：
-```
-python load_balancer.py
-```
-當你連續多次訪問http://localhost:9000時，負載均衡器會輪流將請求轉發到不同的FASTAPI伺服器。
-
-## practice3
-啟動FASTAPI伺服器（假設在8000和8001端口）：
-
-```
-uvicorn webserver:app --port 8000
-uvicorn webserver:app --port 8001
-```
-啟動Python負載均衡器：
-
-```
-python load_balancer.py
-```
-當你訪問http://localhost:9000/test時，負載均衡器會根據後端伺服器的URL資訊，調用web server的資料並回傳給前端。
 
 注意事項
 請確保所有FASTAPI伺服器和負載均衡器都正確運行並聽取相應的端口。
